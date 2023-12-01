@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Input</title>
+    <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet'>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab {
+
+        height: 200px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background-color: black;
+
+    }
+
+    .logo {
+        height: 150px;
+        width: auto;
+        padding-top: 25px;
+        display: block;
+        margin-left: 20px;
+
+    }
+
+
+
+    .mySlides {
+        display: none;
+
+    }
+s{
+    vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+
+}
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+    .num_entry {
+        background-image: url(https://www.hdwallpapers.in/download/green_forest_trees_rays_4k_hd-3840x2160.jpg);
+        font-family: Arial, Helvetica, sans-serif;
+        padding:200px;
+        padding-top:700px;
+        width:100%;
+        height:600px;
+        display:flex;
+    }
+
+    .neon {
+        font-family: 'Monoton', cursive;
+        font-size: 45px;
+        color: rgb(85, 255, 76);
+        position: absolute;
+        top: 100px;
+        margin-left: 300px;
+        transform: translate(-50%, -50%);
+        font-weight: 400;
+        letter-spacing: 5px;
+    }
+
+    .flicker-slow {
+        animation: flicker 1s linear infinite;
+    }
+
+    .flicker-fast {
+        animation: flicker 1s linear infinite;
+    }
+
+    @keyframes flicker {
+
+        0%,
+        19.999%,
+        22%,
+        62.999%,
+        64%,
+        64.999%,
+        70%,
+        100% {
+            opacity: .99;
+
+        }
+
+        20%,
+        21.999%,
+        63%,
+        63.999%,
+        65%,
+        69.999% {
+            opacity: 0.4;
+        }
+    }
+    #map{
+        border:5px solid;
+        margin-left: 200px;
+        width:200%;
+        height:100%;
+        background-color: rgba(0, 128, 0, 0.216);
+    }   
+
+    .form{
+        border:2px solid white;
+        border-radius:20px ;
+        padding:50px;
+        padding-top:180px;
+        color:white;
+        background-color:transparent;
+        backdrop-filter: blur(20px);
+    }
+    #phone{
+        margin-top: 20px;
+        width: 98%;
+        border:2px solid white;
+        height:30px; 
+        border-radius:8px;
+    }
+
+    .button{
+        margin-top: 20px;
+        width: 100%;
+        border:1px solid white;
+        background-color:rgb(36, 222, 36);
+        color:white;
+        height:30px; 
+        border-radius:8px;
+    }
+    
+    .button:hover{
+        color:rgb(36, 222, 36);
+        background-color: white;
+    }
+
+    .traffic-signal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding:50px;
+      margin-top:40px;
+    
+    }
+
+    .light {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 10px;
+      background-color: #696969;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .red { background-color: #ff0000; }
+    .yellow { background-color: #ffff00; }
+    .green { background-color: #00ff00; }
+    
+    .box{
+        height:300px;
+        width:160px;
+        background-color: rgb(96, 96, 96);
+        border-radius:25px;
+        margin-left:100px;
+    
+    }
+    .foot{
+        height:500px;
+        width:auto;
+        background-color: #262527;
+        padding:30px;
+    }
+    
+</style>
+
+<body>
+    <script>
+        function TestsFunction() {
+            var x = document.getElementById("map");
+            if (x.style.display == "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        $('[data-text]').on('keyup', function () {
+            $(this).attr('data-text', $(this).text());
+        });
+        let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+    </script>
+    <div class="tab">
+        <div>
+            <img class="logo" src="{{ url_for('static',filename='logo.png')}}">
+        </div>
+        <div>
+            <h1 class="neon" data-text="U">TUSK<span class="flicker-slow"></span><span class="flicker-fast"></span>
+                PATRONS</h1>
+        </div>
+
+
+        <div class="ele">
+            <p
+                style="color: white;margin-left:750px;position: relative;margin-top:40px;font-size:20px;font-style:italic;padding-top: 40px;">
+                "Our mission: Real-time elephant tracking, mitigating electrical fence risks, and preventing accidents
+                on train tracks."</p>
+        </div>
+
+
+    </div>
+    
+    
+    
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+
+  <img src="{{ url_for('static',filename='elephant.jpg')}}" style="width:100%" class="s">
+
+</div>
+
+<div class="mySlides fade">
+  <img src="{{ url_for('static',filename='elephant-safari.jpg')}}" style="width:100%" class="s">
+</div>
+
+<div class="mySlides fade">
+  <img src="i{{ url_for('static',filename='L.png')}}" style="width:100%" class="s">
+</div>
+
+</div>
+<br>
+    <div class="num_entry">
+        <div class="form">
+            <h1>LoRa ID TRACKER</h1><br><br>
+            <form action="{{ url_for('home') }}" method="post">
+                <label for="phone">Enter LoRa ID </label><br>
+                <input type="string" id="phone" name="phone" required><br><br><br>
+                <button class="button" type="submit" onclick=updateTrafficSignal()>Submit</button>
+            </form>
+        </div>
+        <div class="map">
+            <embed id ="map" type="text/html" src="{{ url_for('mylocation') }}">
+        </div>
+    </div>
+    <div class="try" style="font-size: 50px;"></div>
+    <div class="foot">
+        <div class="box">
+        <div class="traffic-signal">
+            <div class="light red" id="red"></div>
+            <div class="light yellow" id="yellow"></div>
+            <div class="light green" id="green"></div>
+        </div>
+        </div>
+    </div>
+      
+      
+      <script>
+        // Function to update traffic signal lights based on user input
+        function updateTrafficSignal() {
+          const redLight = document.getElementById('red');
+          const yellowLight = document.getElementById('yellow');
+          const greenLight = document.getElementById('green');
+      
+          // Assuming a checkbox with id "trafficInput" is used for input
+          const trafficInput = '{{ zone }}';
+      
+          if (trafficInput == 'red') {
+            redLight.style.backgroundColor = '#ff0000';
+            yellowLight.style.backgroundColor = '#696969';
+            greenLight.style.backgroundColor = '#696969';
+          } else if(trafficInput == 'yellow') {
+            redLight.style.backgroundColor = '#696969';
+            yellowLight.style.backgroundColor = '#ffff00';
+            greenLight.style.backgroundColor = '#696969';
+          } else{
+            redLight.style.backgroundColor = '#696969';
+            yellowLight.style.backgroundColor = '#696969';
+            greenLight.style.backgroundColor = '#07f02e';
+          }
+        }
+        updateTrafficSignal();
+      </script>
+</body>
+
+</html>
