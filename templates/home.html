@@ -2,326 +2,775 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Number Input</title>
-    <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet'>
+    <title>ElTrack - Elephant Tracking System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #05963f;
+            --secondary-color: #033a18;
+            --accent-color: #ffc107;
+            --dark-color: #212121;
+            --light-color: #f4f4f4;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --success-color: #28a745;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .mission {
+            font-style: italic;
+            font-size: 1.1rem;
+            max-width: 600px;
+            text-align: right;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--secondary-color);
+            padding: 0.5rem 0;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            justify-content: flex-start;
+        }
+
+        .nav-item {
+            margin-right: 1.5rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1581852017103-68e8113e0c50');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            padding: 3rem 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tracker-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        /* Map Container */
+        .map-container {
+            flex: 2;
+            min-width: 300px;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Status Display */
+        .status-section {
+            margin-top: 3rem;
+        }
+
+        .status-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .traffic-light {
+            flex: 1;
+            min-width: 200px;
+            background-color: #333;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .traffic-light-title {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .light-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #3a3a3a;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .light.active {
+            box-shadow: 0 0 20px 5px currentColor;
+        }
+
+        .light.red {
+            border: 3px solid #ff0000;
+        }
+
+        .light.red.active {
+            background-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .light.yellow {
+            border: 3px solid #ffdd00;
+        }
+
+        .light.yellow.active {
+            background-color: #ffdd00;
+            color: #ffdd00;
+        }
+
+        .light.green {
+            border: 3px solid #00ff00;
+        }
+
+        .light.green.active {
+            background-color: #00ff00;
+            color: #00ff00;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            flex: 2;
+            min-width: 300px;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .info-data {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .data-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+
+        .data-text {
+            flex: 1;
+        }
+
+        .data-label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .data-value {
+            font-size: 1.2rem;
+        }
+
+        /* History Table */
+        .history-section {
+            margin-top: 3rem;
+        }
+
+        .history-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .history-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .history-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .history-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .badge-danger {
+            background-color: var(--danger-color);
+        }
+
+        .badge-warning {
+            background-color: var(--warning-color);
+            color: #333;
+        }
+
+        .badge-success {
+            background-color: var(--success-color);
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .alert-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-list a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-list a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mission {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .nav-list {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .form-container,
+            .map-container,
+            .traffic-light,
+            .info-panel {
+                flex: 100%;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    .tab {
-
-        height: 200px;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        background-color: black;
-
-    }
-
-    .logo {
-        height: 150px;
-        width: auto;
-        padding-top: 25px;
-        display: block;
-        margin-left: 20px;
-
-    }
-
-
-
-    .mySlides {
-        display: none;
-
-    }
-s{
-    vertical-align: middle;
-}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-
-}
-.active {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
-}
-
-    .num_entry {
-        background-image: url(https://www.hdwallpapers.in/download/green_forest_trees_rays_4k_hd-3840x2160.jpg);
-        font-family: Arial, Helvetica, sans-serif;
-        padding:200px;
-        padding-top:700px;
-        width:100%;
-        height:600px;
-        display:flex;
-    }
-
-    .neon {
-        font-family: 'Monoton', cursive;
-        font-size: 45px;
-        color: rgb(85, 255, 76);
-        position: absolute;
-        top: 100px;
-        margin-left: 300px;
-        transform: translate(-50%, -50%);
-        font-weight: 400;
-        letter-spacing: 5px;
-    }
-
-    .flicker-slow {
-        animation: flicker 1s linear infinite;
-    }
-
-    .flicker-fast {
-        animation: flicker 1s linear infinite;
-    }
-
-    @keyframes flicker {
-
-        0%,
-        19.999%,
-        22%,
-        62.999%,
-        64%,
-        64.999%,
-        70%,
-        100% {
-            opacity: .99;
-
-        }
-
-        20%,
-        21.999%,
-        63%,
-        63.999%,
-        65%,
-        69.999% {
-            opacity: 0.4;
-        }
-    }
-    #map{
-        border:5px solid;
-        margin-left: 200px;
-        width:200%;
-        height:100%;
-        background-color: rgba(0, 128, 0, 0.216);
-    }   
-
-    .form{
-        border:2px solid white;
-        border-radius:20px ;
-        padding:50px;
-        padding-top:180px;
-        color:white;
-        background-color:transparent;
-        backdrop-filter: blur(20px);
-    }
-    #phone{
-        margin-top: 20px;
-        width: 98%;
-        border:2px solid white;
-        height:30px; 
-        border-radius:8px;
-    }
-
-    .button{
-        margin-top: 20px;
-        width: 100%;
-        border:1px solid white;
-        background-color:rgb(36, 222, 36);
-        color:white;
-        height:30px; 
-        border-radius:8px;
-    }
-    
-    .button:hover{
-        color:rgb(36, 222, 36);
-        background-color: white;
-    }
-
-    .traffic-signal {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding:50px;
-      margin-top:40px;
-    
-    }
-
-    .light {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin: 10px;
-      background-color: #696969;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .red { background-color: #ff0000; }
-    .yellow { background-color: #ffff00; }
-    .green { background-color: #00ff00; }
-    
-    .box{
-        height:300px;
-        width:160px;
-        background-color: rgb(96, 96, 96);
-        border-radius:25px;
-        margin-left:100px;
-    
-    }
-    .foot{
-        height:500px;
-        width:auto;
-        background-color: #262527;
-        padding:30px;
-    }
-    
-</style>
 
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="/static/logo.png" alt="ElTrack Logo" class="logo">
+                <h1 class="brand">ElTrack</h1>
+            </div>
+            <p class="mission">"Our mission: Real-time elephant tracking, mitigating electrical fence risks, and preventing accidents on train tracks."</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Conservation</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2 class="hero-title">Advanced Elephant Tracking System</h2>
+            <p class="hero-text">Helping protect elephants by monitoring their movements and preventing accidents with our state-of-the-art LoRa tracking technology.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+                <span class="alert-close">&times;</span>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <!-- Tracker Section -->
+            <section class="tracker-container">
+                <div class="form-container">
+                    <h2 class="form-title">Track Elephant Location</h2>
+                    <form action="{{ url_for('home') }}" method="post">
+                        <div class="form-group">
+                            <label for="lora_id" class="form-label">Enter LoRa ID</label>
+                            <input type="text" id="lora_id" name="lora_id" class="form-input" placeholder="e.g. ELE-12345" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Track Location</button>
+                    </form>
+                </div>
+
+                <div class="map-container">
+                    {% if distance > 0 %}
+                    <iframe src="{{ url_for('map_view') }}" class="map-frame" id="map-frame"></iframe>
+                    {% else %}
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: #f9f9f9;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"></i>
+                        <p>Enter a LoRa ID to view elephant location on the map</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- Status Section -->
+            <section class="status-section">
+                <div class="status-container">
+                    <div class="traffic-light">
+                        <h3 class="traffic-light-title">Alert Status</h3>
+                        <div class="light-container">
+                            <div class="light red {% if zone == 'red' %}active{% endif %}"></div>
+                            <div class="light yellow {% if zone == 'yellow' %}active{% endif %}"></div>
+                            <div class="light green {% if zone == 'green' %}active{% endif %}"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3 class="info-title">Tracking Information</h3>
+                        <div class="info-data">
+                            <div class="data-item">
+                                <div class="data-icon">
+                                    <i class="fas fa-ruler"></i>
+                                </div>
+                                <div class="data-text">
+                                    <div class="data-label">Distance from Train</div>
+                                    <div class="data-value">{{ distance }} km</div>
+                                </div>
+                            </div>
+
+                            <div class="data-item">
+                                <div class="data-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="data-text">
+                                    <div class="data-label">Risk Level</div>
+                                    <div class="data-value">
+                                        {% if zone == 'red' %}
+                                        <span class="badge badge-danger">High Risk</span>
+                                        {% elif zone == 'yellow' %}
+                                        <span class="badge badge-warning">Medium Risk</span>
+                                        {% else %}
+                                        <span class="badge badge-success">Low Risk</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-item">
+                                <div class="data-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="data-text">
+                                    <div class="data-label">Recommendation</div>
+                                    <div class="data-value">
+                                        {% if zone == 'red' %}
+                                        Alert train operator and deploy emergency response team
+                                        {% elif zone == 'yellow' %}
+                                        Monitor situation closely and prepare for intervention
+                                        {% else %}
+                                        Continue normal monitoring
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section">
+                <h2 class="history-title">Recent Tracking History</h2>
+                {% if tracking_history %}
+                <div style="overflow-x: auto;">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>LoRa ID</th>
+                                <th>Time</th>
+                                <th>Distance</th>
+                                <th>Risk Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lora_id, records in tracking_history.items() %}
+                                {% for record in records|reverse %}
+                                <tr>
+                                    <td>{{ lora_id }}</td>
+                                    <td>{{ record.timestamp }}</td>
+                                    <td>{{ record.distance }} km</td>
+                                    <td>
+                                        {% if record.zone == 'red' %}
+                                        <span class="badge badge-danger">High Risk</span>
+                                        {% elif record.zone == 'yellow' %}
+                                        <span class="badge badge-warning">Medium Risk</span>
+                                        {% else %}
+                                        <span class="badge badge-success">Low Risk</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No tracking history available yet.</p>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3 class="footer-title">About ElTrack</h3>
+                <p class="footer-text">ElTrack is a cutting-edge elephant tracking system designed to protect elephants from railway accidents through real-time monitoring and alert systems.</p>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="#">Conservation</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-list">
+                    <li><i class="fas fa-envelope"></i> info@eltrack.org</li>
+                    <li><i class="fas fa-phone"></i> +91 123-456-7890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Bangalore, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2025 ElTrack - Elephant Tracking System. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        $('[data-text]').on('keyup', function () {
-            $(this).attr('data-text', $(this).text());
+        // Close alert messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButtons = document.querySelectorAll('.alert-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const alert = this.parentElement;
+                    alert.style.opacity = '0';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 300);
+                });
+            });
+            
+            // Auto refresh map periodically if tracking is active
+            if (document.getElementById('map-frame')) {
+                setInterval(function() {
+                    const mapFrame = document.getElementById('map-frame');
+                    if (mapFrame) {
+                        // Add a timestamp parameter to bypass cache
+                        let src = mapFrame.src;
+                        if (src.includes('?')) {
+                            src = src.split('?')[0];
+                        }
+                        mapFrame.src = src + '?t=' + new Date().getTime();
+                    }
+                }, 30000); // Refresh every 30 seconds
+            }
         });
-        let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-    
     </script>
-    <div class="tab">
-        <div>
-            <img class="logo" src="{{ url_for('static',filename='logo.png')}}">
-        </div>
-        <div>
-            <h1 class="neon" data-text="U">TUSK<span class="flicker-slow"></span><span class="flicker-fast"></span>
-                PATRONS</h1>
-        </div>
-
-
-        <div class="ele">
-            <p
-                style="color: white;margin-left:750px;position: relative;margin-top:40px;font-size:20px;font-style:italic;padding-top: 40px;">
-                "Our mission: Real-time elephant tracking, mitigating electrical fence risks, and preventing accidents
-                on train tracks."</p>
-        </div>
-
-
-    </div>
-    
-    
-    
-
-<div class="slideshow-container">
-
-<div class="mySlides fade">
-
-  <img src="{{ url_for('static',filename='elephant.jpg')}}" style="width:100%" class="s">
-
-</div>
-
-<div class="mySlides fade">
-  <img src="{{ url_for('static',filename='elephant-safari.jpg')}}" style="width:100%" class="s">
-</div>
-
-<div class="mySlides fade">
-  <img src="i{{ url_for('static',filename='L.png')}}" style="width:100%" class="s">
-</div>
-
-</div>
-<br>
-    <div class="num_entry">
-        <div class="form">
-            <h1>LoRa ID TRACKER</h1><br><br>
-            <form action="{{ url_for('home') }}" method="post">
-                <label for="phone">Enter LoRa ID </label><br>
-                <input type="string" id="phone" name="phone" required><br><br><br>
-                <button class="button" type="submit" onclick='updateTrafficSignal(); loadDoc();'>Submit</button>
-            </form>
-        </div>
-        <div class="map">
-            <embed id ="map" type="text/html" src="{{ url_for('mylocation') }}">
-        </div>
-    </div>
-    <div class="try" style="font-size: 50px;"></div>
-    <div class="foot">
-        <div class="box">
-        <div class="traffic-signal">
-            <div class="light red" id="red"></div>
-            <div class="light yellow" id="yellow"></div>
-            <div class="light green" id="green"></div>
-        </div>
-        </div>
-    </div>
-      
-      
-      <script>
-        // Function to update traffic signal lights based on user input
-        function updateTrafficSignal() {
-          const redLight = document.getElementById('red');
-          const yellowLight = document.getElementById('yellow');
-          const greenLight = document.getElementById('green');
-      
-          // Assuming a checkbox with id "trafficInput" is used for input
-          const trafficInput = '{{ zone }}';
-      
-          if (trafficInput == 'red') {
-            redLight.style.backgroundColor = '#ff0000';
-            yellowLight.style.backgroundColor = '#696969';
-            greenLight.style.backgroundColor = '#696969';
-          } else if(trafficInput == 'yellow') {
-            redLight.style.backgroundColor = '#696969';
-            yellowLight.style.backgroundColor = '#ffff00';
-            greenLight.style.backgroundColor = '#696969';
-          } else{
-            redLight.style.backgroundColor = '#696969';
-            yellowLight.style.backgroundColor = '#696969';
-            greenLight.style.backgroundColor = '#07f02e';
-          }
-        }
-        updateTrafficSignal();
-      </script>
 </body>
-
 </html>
