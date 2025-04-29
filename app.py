@@ -1,7 +1,6 @@
 """
     Eltrack - prototype
     by - Adithya G
-
 """
 
 
@@ -22,7 +21,6 @@ def distance(lat,lng,x,y):
     p=[lat,lng]
     q=[lat+x,lng+y]
     distance = math.dist(p,q)
-    print(distance)
     return distance*111.1
 
 # establishing zones based on distance

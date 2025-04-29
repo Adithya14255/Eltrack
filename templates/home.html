@@ -206,14 +206,6 @@ s{
 
 <body>
     <script>
-        function TestsFunction() {
-            var x = document.getElementById("map");
-            if (x.style.display == "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
         $('[data-text]').on('keyup', function () {
             $(this).attr('data-text', $(this).text());
         });
@@ -236,6 +228,7 @@ function showSlides() {
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
+    
     </script>
     <div class="tab">
         <div>
@@ -284,7 +277,7 @@ function showSlides() {
             <form action="{{ url_for('home') }}" method="post">
                 <label for="phone">Enter LoRa ID </label><br>
                 <input type="string" id="phone" name="phone" required><br><br><br>
-                <button class="button" type="submit" onclick=updateTrafficSignal()>Submit</button>
+                <button class="button" type="submit" onclick='updateTrafficSignal(); loadDoc();'>Submit</button>
             </form>
         </div>
         <div class="map">
