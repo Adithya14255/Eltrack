@@ -6,6 +6,8 @@ ElTrack is a sophisticated web application designed to track elephants in real-t
 
 ![ElTrack Logo](static/logo.png)
 
+![Main page](static/home.png)
+
 ## Features
 
 ### Core Functionality
